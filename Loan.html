@@ -13092,7 +13092,7 @@ div#notebook {
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[99]:</div>
+<div class="prompt input_prompt">In&nbsp;[5]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import all packages and set plots to be embedded inline</span>
@@ -15008,7 +15008,7 @@ memory usage: 18.2+ MB
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>BorrowerRate has a right-skewed distribution with some peaks at ~0.15 and ~0.31</li>
+<li>BorrowerRate has a multimodal distribution with highest peaks around 0.15 and 0.31</li>
 </ul>
 
 </div>
@@ -16631,181 +16631,6 @@ memory usage: 7.9+ MB
 </div>
 
 </div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[527]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># improve the LoanStatus metric</span>
-<span class="n">df</span><span class="o">.</span><span class="n">LoanStatus</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[527]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Current                   55730
-Completed                 38061
-Chargedoff                11992
-Defaulted                  5018
-Past Due (1-15 days)        800
-Past Due (31-60 days)       361
-Past Due (61-90 days)       311
-Past Due (91-120 days)      304
-Past Due (16-30 days)       265
-FinalPaymentInProgress      203
-Past Due (&gt;120 days)         16
-Cancelled                     5
-Name: LoanStatus, dtype: int64</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>LoanStatus has 12 possible values, some of which with very small proportions out of total counts. Simplify LoanStatus into 4 categories: Current, Completed, PastDue and Default (Chargedoff or Defaulted).</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[577]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;LoanS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">LoanStatus</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[578]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">LoanS</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">LoanS</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;Current&#39;</span><span class="p">:</span><span class="s1">&#39;Current&#39;</span><span class="p">,</span> <span class="s1">&#39;Completed&#39;</span><span class="p">:</span><span class="s1">&#39;Completed&#39;</span><span class="p">,</span> <span class="s1">&#39;FinalPaymentInProgress&#39;</span><span class="p">:</span><span class="s1">&#39;Completed&#39;</span><span class="p">,</span><span class="s1">&#39;Chargedoff&#39;</span><span class="p">:</span><span class="s1">&#39;Default&#39;</span><span class="p">,</span> <span class="s1">&#39;Defaulted&#39;</span><span class="p">:</span><span class="s1">&#39;Default&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;Past Due (1-15 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span> <span class="s1">&#39;Past Due (31-60 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span><span class="s1">&#39;Past Due (91-120 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span>
-                                <span class="s1">&#39;Past Due (61-90 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span><span class="s1">&#39;Past Due (16-30 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span><span class="s1">&#39;Past Due (&gt;120 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">})</span> 
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[540]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">LoanS</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[540]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>Current      55730
-Completed    38264
-Default      17010
-PastDue       2057
-Name: LoanS, dtype: int64</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[541]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">LoanS</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-<div class="output_wrapper">
-<div class="output">
-
-
-<div class="output_area">
-
-    <div class="prompt output_prompt">Out[541]:</div>
-
-
-
-
-<div class="output_text output_subarea output_execute_result">
-<pre>str</pre>
-</div>
-
-</div>
-
-</div>
-</div>
-
-</div>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Change LoanS type to categorical</p>
-
-</div>
-</div>
-</div>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[579]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Completed&#39;</span><span class="p">,</span><span class="s1">&#39;Current&#39;</span><span class="p">,</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span><span class="s1">&#39;Default&#39;</span><span class="p">]</span>
-<span class="n">t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">CategoricalDtype</span><span class="p">(</span><span class="n">categories</span> <span class="o">=</span> <span class="n">ls</span><span class="p">,</span> <span class="n">ordered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
-<span class="n">df</span><span class="o">.</span><span class="n">LoanS</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">LoanS</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -17511,6 +17336,218 @@ memory usage: 7.9+ MB
 <h3 id="Loan-Status-vs.-Other-Variables">Loan Status vs. Other Variables<a class="anchor-link" href="#Loan-Status-vs.-Other-Variables">&#182;</a></h3>
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[527]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># improve the LoanStatus metric</span>
+<span class="n">df</span><span class="o">.</span><span class="n">LoanStatus</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[527]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Current                   55730
+Completed                 38061
+Chargedoff                11992
+Defaulted                  5018
+Past Due (1-15 days)        800
+Past Due (31-60 days)       361
+Past Due (61-90 days)       311
+Past Due (91-120 days)      304
+Past Due (16-30 days)       265
+FinalPaymentInProgress      203
+Past Due (&gt;120 days)         16
+Cancelled                     5
+Name: LoanStatus, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>LoanStatus has 12 possible values, some of which with very small proportions out of total counts. Simplify LoanStatus into 4 categories: Current, Completed, PastDue and Default (Chargedoff or Defaulted).</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[577]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="p">[</span><span class="s1">&#39;LoanS&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">LoanStatus</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[578]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">LoanS</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">LoanS</span><span class="o">.</span><span class="n">map</span><span class="p">({</span><span class="s1">&#39;Current&#39;</span><span class="p">:</span><span class="s1">&#39;Current&#39;</span><span class="p">,</span> <span class="s1">&#39;Completed&#39;</span><span class="p">:</span><span class="s1">&#39;Completed&#39;</span><span class="p">,</span> <span class="s1">&#39;FinalPaymentInProgress&#39;</span><span class="p">:</span><span class="s1">&#39;Completed&#39;</span><span class="p">,</span><span class="s1">&#39;Chargedoff&#39;</span><span class="p">:</span><span class="s1">&#39;Default&#39;</span><span class="p">,</span> <span class="s1">&#39;Defaulted&#39;</span><span class="p">:</span><span class="s1">&#39;Default&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;Past Due (1-15 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span> <span class="s1">&#39;Past Due (31-60 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span><span class="s1">&#39;Past Due (91-120 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span>
+                                <span class="s1">&#39;Past Due (61-90 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span><span class="s1">&#39;Past Due (16-30 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span><span class="s1">&#39;Past Due (&gt;120 days)&#39;</span><span class="p">:</span><span class="s1">&#39;PastDue&#39;</span><span class="p">})</span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[540]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">LoanS</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[540]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Current      55730
+Completed    38264
+Default      17010
+PastDue       2057
+Name: LoanS, dtype: int64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[7]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">df</span><span class="o">.</span><span class="n">LoanS</span><span class="o">.</span><span class="n">value_counts</span><span class="p">()</span><span class="o">/</span><span class="n">df</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[7]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>Current      0.492898
+Completed    0.338422
+Default      0.150443
+PastDue      0.018193
+Name: LoanS, dtype: float64</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[541]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">type</span><span class="p">(</span><span class="n">df</span><span class="o">.</span><span class="n">LoanS</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt output_prompt">Out[541]:</div>
+
+
+
+
+<div class="output_text output_subarea output_execute_result">
+<pre>str</pre>
+</div>
+
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Change LoanS type to categorical</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[579]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">ls</span> <span class="o">=</span> <span class="p">[</span><span class="s1">&#39;Completed&#39;</span><span class="p">,</span><span class="s1">&#39;Current&#39;</span><span class="p">,</span><span class="s1">&#39;PastDue&#39;</span><span class="p">,</span><span class="s1">&#39;Default&#39;</span><span class="p">]</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">api</span><span class="o">.</span><span class="n">types</span><span class="o">.</span><span class="n">CategoricalDtype</span><span class="p">(</span><span class="n">categories</span> <span class="o">=</span> <span class="n">ls</span><span class="p">,</span> <span class="n">ordered</span> <span class="o">=</span> <span class="kc">True</span><span class="p">)</span>
+<span class="n">df</span><span class="o">.</span><span class="n">LoanS</span> <span class="o">=</span> <span class="n">df</span><span class="o">.</span><span class="n">LoanS</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
@@ -18854,7 +18891,7 @@ non-homeonwer credit score: 666
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <ul>
-<li>Loan default probability is highly correlated by income: lower income is aoociated with higher loan default probability</li>
+<li>Loan default probability is highly correlated by income: lower income is associated with higher loan default probability</li>
 <li>Credit score also has strong correlation with loan default probability: lower credit rating is more likely to see loan defaulted. </li>
 </ul>
 
