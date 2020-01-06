@@ -13229,7 +13229,8 @@ $(document).ready(function(){
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Investigation-Overview">Investigation Overview<a class="anchor-link" href="#Investigation-Overview">&#182;</a></h2><p>The investigations focus on factors that may affect a loan's interest rate and outcome. For example, how the borrower's income or credit score are correlated with interest rate, and what factors may influence whether the loan is defaulted.</p>
+<h2 id="Investigation-Overview">Investigation Overview<a class="anchor-link" href="#Investigation-Overview">&#182;</a></h2><p>The data exploration starts with distributions of key attributes related to a loan: interest rate and outcome (defaulted or not). Supporting variable, such as monthly income, is also illustrated.
+The investigations focus mainly on factors that may affect a loan's interest rate and outcome. For example, how the borrower's income or credit score are correlated with interest rate, and what factors may influence whether the loan is defaulted. In addition, loan original amount and credit score relationship is looked into. We'll also see later in the presentation, how credit score and borrower's monthly income related to the probability of the loan being defaulted.</p>
 <h2 id="Dataset-Overview">Dataset Overview<a class="anchor-link" href="#Dataset-Overview">&#182;</a></h2><p>This data set contains 113,937 
 loans with 81 attributes on each loan, including loan amount, borrower rate (interest rate), current loan status (completed, current, defaulted, ...), borrower's income, borrower's credit score, whether borrower is homeowner, borrower's debt to income ratio, etc.</p>
 
@@ -13680,7 +13681,7 @@ Combine the 'past due' categories into one category - 'PastDue'.</p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Loan-Original-Amount-and-Credit-Score">Loan Original Amount and Credit Score<a class="anchor-link" href="#Loan-Original-Amount-and-Credit-Score">&#182;</a></h2><p>How much the Loan Original Amount can be is limited by Credit Score.</p>
+<h2 id="Loan-Original-Amount-and-Credit-Score">Loan Original Amount and Credit Score<a class="anchor-link" href="#Loan-Original-Amount-and-Credit-Score">&#182;</a></h2><p>How much the Loan Original Amount is limited by Credit Score.</p>
 
 </div>
 </div>
@@ -13734,8 +13735,8 @@ Combine the 'past due' categories into one category - 'PastDue'.</p>
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="Loan-Default-Rate-vs.-Income-and-Credit-Rating">Loan Default Rate vs. Income and Credit Rating<a class="anchor-link" href="#Loan-Default-Rate-vs.-Income-and-Credit-Rating">&#182;</a></h2><ul>
-<li>Loan default probability is highly correlated by income: lower income is associated with higher loan default probability</li>
-<li>Credit score also has strong correlation with loan default probability: lower credit rating is more likely to see loan defaulted. </li>
+<li>Loan default probability is highly correlated with income. Lower income is associated with higher loan default probability. <br>At the same time, </li>
+<li>Credit score also has strong correlation with loan default probability. Lower credit rating is more likely to see loan defaulted. </li>
 </ul>
 
 </div>
